@@ -1,0 +1,79 @@
+<div *ngIf="loading" class="my-loading">
+  <div class="dimmer"></div>
+
+  <div class="loading-bg">
+    <img src="../assets/images/831.gif" alt="" />
+  </div>
+</div>
+
+<!-- Main content -->
+<div class="content-wrapper">
+
+
+
+  <!-- Page header -->
+  <div *ngIf="loading == false" class="">
+    <div class="page-header-content">
+      <div class="page-title">
+        <h4> Merchants </h4>
+      </div>
+      <div class="heading-elements">
+        <a [routerLink]="['/home','add-merchant']" class="btn btn-orange btn-rounded"> Add New Merchant</a>
+      </div>
+    </div>
+  </div>
+  <!-- /page header -->
+
+
+  <!-- Content area -->
+  <div class="content">
+    <!-- Dashboard content -->
+    <div class="row">
+      <div class="col-lg-12" [ngClass]="{'form-view': loading == true }">
+
+        <!-- Checkbox selection -->
+        <div class="panel panel-flat">
+          <div class="panel-heading">
+            <h5 class="panel-title"> All offers </h5>
+            <div class="heading-elements">
+              <ul class="icons-list">
+                <li>
+                  <a data-action="reload"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped media-library table-lg">
+            <thead>
+              <tr>
+                <th>Preview</th>
+                <th style="width:300px;">Merchant name</th>
+                <th style="width:500px;">Description</th>
+                <th> Merchant Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let merchant of merchants">
+                <td>
+                  <a href="assets/images/placeholder.jpg" data-popup="lightbox">
+                    <img [src]="'data:image/jpg;base64,'+merchant.logo" alt="" class="img-rounded img-preview" />
+                    <!-- <img src="assets/images/placeholder.jpg" alt="" class="img-rounded img-preview"> -->
+                  </a>
+                </td>
+                <td>{{merchant.name}}</td>
+                <td>{{merchant.description}}</td>
+                <td>{{merchant.phone}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /checkbox selection -->
+
+      </div>
+    </div>
+    <!-- /dashboard content -->
+
+  </div>
+  <!-- /content area -->
+
+</div>

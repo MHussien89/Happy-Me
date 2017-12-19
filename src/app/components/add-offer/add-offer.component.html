@@ -1,0 +1,101 @@
+<div *ngIf="loading" class="my-loading">
+  <div class="dimmer"></div>
+
+  <div class="loading-bg">
+    <img src="../assets/images/831.gif" alt="" />
+  </div>
+</div>
+<div class="content-wrapper">
+
+  <!-- Page header -->
+  <div class="">
+    <div class="page-header-content">
+      <div class="page-title">
+        <h4> Create new offer </h4>
+      </div>
+
+    </div>
+  </div>
+  <!-- /page header -->
+  <!-- Content area -->
+  <div class="content">
+    <!-- Dashboard content -->
+    <div class="row">
+      <div class="col-lg-12" [ngClass]="{'form-view': loading == true }">
+
+        <!-- details form -->
+        <div class="panel panel-flat">
+          <div class="panel-heading">
+            <h5 class="panel-title"> New offer </h5>
+            <div class="heading-elements">
+              <ul class="icons-list">
+                <li>
+                  <a data-action="reload"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!--  form -->
+
+          <form name="form" (ngSubmit)="f.form.valid && addNewOffer()" #f="ngForm" enctype="multipart/form-data" novalidate>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label> Offer title </label>
+                    <input type="text" class="form-control" name="title" [(ngModel)]="offer.title" #title="ngModel" required placeholder="Offer title "
+                    />
+                    <div *ngIf="f.submitted && !title.valid" style="color:red;">Offer title is required</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Start Date</label>
+                    <input type="text" class="form-control" name="start" [(ngModel)]="offer.start" #start="ngModel" required placeholder="Start Date "
+                    />
+                    <div *ngIf="f.submitted && !start.valid" style="color:red;">Start Date is required</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>End Date </label>
+                    <input type="text" class="form-control" name="end" [(ngModel)]="offer.end" #end="ngModel" required placeholder="End Date "
+                    />
+                    <div *ngIf="f.submitted && !end.valid" style="color:red;">End Date is required</div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label> Description </label>
+                    <textarea rows="5" type="text" class="form-control" name="description" [(ngModel)]="offer.description" #description="ngModel"
+                      required placeholder="Write description here "></textarea>
+                    <div *ngIf="f.submitted && !description.valid" style="color:red;">Offer Description is required</div>
+                  </div>
+                </div>
+
+              </div>
+              <p class="text-semibold">Upload offer images</p>
+              <input type="file" (change)="fileChangeEvent($event)" />
+              <!-- <img [src]="'data:image/jpg;base64,'+imageData" alt="" class="img-rounded img-preview" /> -->
+              <div class="pull-right">
+                <button type="button" class="btn btn-danger"> Cancel </button>
+                <button type="submit" class="btn btn-success"> Save </button>
+              </div>
+            </div>
+          </form>
+
+
+          <!-- /form -->
+
+        </div>
+        <!-- /details form -->
+
+      </div>
+    </div>
+    <!-- /dashboard content -->
+
+  </div>
+  <!-- /content area -->
+
+</div>

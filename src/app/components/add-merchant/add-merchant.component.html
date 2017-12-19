@@ -1,0 +1,186 @@
+<div *ngIf="loading" class="my-loading">
+  <div class="dimmer"></div>
+
+  <div class="loading-bg">
+    <img src="../assets/images/831.gif" alt="" />
+  </div>
+</div>
+<div class="content-wrapper">
+
+  <!-- Page header -->
+  <div class="">
+    <div class="page-header-content">
+      <div class="page-title">
+        <h4> Create new Merchant </h4>
+      </div>
+
+    </div>
+  </div>
+  <!-- /page header -->
+  <!-- Content area -->
+  <div class="content">
+    <!-- Dashboard content -->
+    <div class="row">
+      <div class="col-lg-12" [ngClass]="{'form-view': loading == true }">
+        <form name="form" (ngSubmit)="f.form.valid && addNewMerchant()" #f="ngForm" enctype="multipart/form-data" novalidate>
+          <!-- details form -->
+          <div class="panel panel-flat">
+            <div class="panel-heading">
+              <h5 class="panel-title"> Merchant Details </h5>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li>
+                    <a data-action="reload"></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!--  form -->
+
+
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label> Merchant Name </label>
+                    <input type="text" class="form-control" name="name" [(ngModel)]="merchant.name" #name="ngModel" required placeholder="Merchant Name "
+                    />
+                    <div *ngIf="f.submitted && !name.valid" style="color:red;">Merchant Name is required</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Merchant Phone</label>
+                    <input type="text" class="form-control" name="phone" [(ngModel)]="merchant.phone" #phone="ngModel" required placeholder="Merchant Phone "
+                    />
+                    <div *ngIf="f.submitted && !phone.valid" style="color:red;">Merchant Phone is required</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Background Color </label>
+                    <input [style.background]="merchant.backgroundColor" />
+                    <!-- <input type="text" class="form-control" name="end" [(ngModel)]="offer.end" #end="ngModel" required placeholder="Background Color " 
+                      />-->
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label> Description </label>
+                    <textarea rows="5" type="text" class="form-control" name="description" [(ngModel)]="merchant.description" #description="ngModel"
+                      required placeholder="Write description here "></textarea>
+                    <div *ngIf="f.submitted && !description.valid" style="color:red;">Merchant Description is required</div>
+                  </div>
+                </div>
+
+              </div>
+              <p class="text-semibold">Upload Merchant Logo</p>
+              <input type="file" (change)="fileChangeEvent($event)" />
+              <!-- <img [src]="'data:image/jpg;base64,'+imageData" alt="" class="img-rounded img-preview" /> -->
+            </div>
+
+
+          </div>
+
+
+          <!-- details form -->
+          <div class="panel panel-flat">
+            <div class="panel-heading">
+              <h5 class="panel-title"> Merchant Rule </h5>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li>
+                    <a data-action="reload"></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label> Start 1 </label>
+                    <input type="text" class="form-control" name="star1" [(ngModel)]="merchantRule.star1" #star1="ngModel" required placeholder="Star 1 "
+                    />
+                    <div *ngIf="f.submitted && !star1.valid" style="color:red;">Star 1 is required</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label> Start 2 </label>
+                    <input type="text" class="form-control" name="star2" [(ngModel)]="merchantRule.star2" #star2="ngModel" required placeholder="Star 2 "
+                    />
+                    <div *ngIf="f.submitted && !star2.valid" style="color:red;">Star 1 is required</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label> Start 3 </label>
+                    <input type="text" class="form-control" name="star3" [(ngModel)]="merchantRule.star3" #star3="ngModel" required placeholder="Star 3 "
+                    />
+                    <div *ngIf="f.submitted && !star3.valid" style="color:red;">Star 1 is required</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Start 4 </label>
+                    <input type="text" class="form-control" name="star4" [(ngModel)]="merchantRule.star4" #star4="ngModel" required placeholder="Star 4 "
+                    />
+                    <div *ngIf="f.submitted && !star4.valid" style="color:red;">Star 1 is required</div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label> Start 5 </label>
+                    <input type="text" class="form-control" name="star5" [(ngModel)]="merchantRule.star5" #star5="ngModel" required placeholder="Star 5 "
+                    />
+                    <div *ngIf="f.submitted && !star5.valid" style="color:red;">Star 1 is required</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label> Maximum points of redeem </label>
+                    <input type="text" class="form-control" name="max" [(ngModel)]="merchantRule.max" #max="ngModel" required placeholder="Maximum points "
+                    />
+                    <div *ngIf="f.submitted && !max.valid" style="color:red;">Maximum points is required</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label> Minimum number of points </label>
+                    <input type="text" class="form-control" name="min" [(ngModel)]="merchantRule.min" #min="ngModel" required placeholder="Minimum number "
+                    />
+                    <div *ngIf="f.submitted && !min.valid" style="color:red;">Minimum number is required</div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="pull-right">
+                <button type="button" class="btn btn-danger"> Cancel </button>
+                <button type="submit" class="btn btn-success"> Save </button>
+              </div>
+            </div>
+
+          </div>
+        </form>
+
+
+        <!-- /form -->
+
+        <!-- /details form -->
+
+      </div>
+    </div>
+    <!-- /dashboard content -->
+    <!-- Footer -->
+    <!-- /footer -->
+
+  </div>
+  <!-- /content area -->
+
+</div>

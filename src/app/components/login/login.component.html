@@ -1,0 +1,84 @@
+<div class="login-container">
+
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+
+        <!-- Content area -->
+        <div class="content">
+
+          <!-- login form -->
+          <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+            <div class="panel panel-body login-form">
+
+              <div class="text-center">
+                <img src="../assets/images/login-logo.png" />
+                <h5 class="content-group">Login to your account <small class="display-block">Enter your credentials below</small></h5>
+              </div>
+              <div class="alert alert-danger" *ngIf="errorMessage != null">
+                <p>{{errorMessage}}.</p>
+              </div>
+              <div class="alert alert-success" *ngIf="successMessage != null">
+                <p>{{successMessage}}.</p>
+              </div>
+              <div class="form-group has-feedback has-feedback-left">
+                <input type="text" class="form-control" name="username" placeholder="Username" [(ngModel)]="model.username" #username="ngModel"
+                  required>
+                <span *ngIf="f.submitted && !username.valid" class="help-block text-danger"><i class="icon-cancel-circle2 position-left"></i> Username is required</span>
+                <div class="form-control-feedback">
+                  <i class="icon-user text-muted"></i>
+                </div>
+              </div>
+
+              <div class="form-group has-feedback has-feedback-left">
+                <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="model.password" #password="ngModel"
+                  required>
+                <span *ngIf="f.submitted && !password.valid" class="help-block text-danger"><i class="icon-cancel-circle2 position-left"></i> Password is required</span>
+                <div class="form-control-feedback">
+                  <i class="icon-lock2 text-muted"></i>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <button class="btn btn-primary btn-block btn-orange"> Log In  </button>
+                <div *ngIf="loading" class="my-loading">
+                  <div class="dimmer"></div>
+
+                  <div class="loading-bg">
+                    <img src="../assets/images/831.gif" alt="" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center">
+                <a [routerLink]="['/register']">Don't have an account yet? Sign Up</a>
+              </div>
+            </div>
+          </form>
+          <!-- /simple login form -->
+
+
+          <!-- Footer -->
+          <div class="footer text-muted text-center">
+            All rights reserved to <a href="#"> Pointech </a> &copy; 2017.
+          </div>
+          <!-- /footer -->
+
+        </div>
+        <!-- /content area -->
+
+      </div>
+      <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+  </div>
+  <!-- /page container -->
+
+</div>

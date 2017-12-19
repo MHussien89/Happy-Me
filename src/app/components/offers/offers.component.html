@@ -1,0 +1,100 @@
+<div *ngIf="loading" class="my-loading">
+  <div class="dimmer"></div>
+
+  <div class="loading-bg">
+    <img src="../assets/images/831.gif" alt="" />
+  </div>
+</div>
+
+<!-- Main content -->
+<div class="content-wrapper">
+
+
+
+  <!-- Page header -->
+  <div *ngIf="loading == false" class="">
+    <div class="page-header-content">
+      <div class="page-title">
+        <h4> Offers </h4>
+      </div>
+      <div class="heading-elements">
+        <a [routerLink]="['/home','add-offer']" class="btn btn-orange btn-rounded"> Add New Offer</a>
+      </div>
+    </div>
+  </div>
+  <!-- /page header -->
+
+
+  <!-- Content area -->
+  <div class="content">
+    <!-- Dashboard content -->
+    <div class="row">
+      <div class="col-lg-12" [ngClass]="{'form-view': loading == true }">
+
+        <!-- Checkbox selection -->
+        <div class="panel panel-flat">
+          <div class="panel-heading">
+            <h5 class="panel-title"> All offers </h5>
+            <div class="heading-elements">
+              <ul class="icons-list">
+                <li>
+                  <a data-action="reload"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped media-library table-lg">
+            <thead>
+              <tr>
+                <th>Preview</th>
+                <th style="width:300px;">Offer name</th>
+                <th style="width:500px;">Description</th>
+                <th> Duration</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let offer of offers">
+                <td>
+                  <a href="assets/images/placeholder.jpg" data-popup="lightbox">
+                    <img [src]="'data:image/jpg;base64,'+offer.image" alt="" class="img-rounded img-preview" />
+                    <!-- <img src="assets/images/placeholder.jpg" alt="" class="img-rounded img-preview"> -->
+                  </a>
+                </td>
+                <td>{{offer.title}}</td>
+                <td>{{offer.description}}</td>
+                <td>{{offer.start}} - {{offer.end}}</td>
+                <td class="text-center">
+                  <ul class="icons-list">
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-menu9"></i>
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                          <a [routerLink]="['/home','edit-offer',offer.id]">
+                            <i class="icon-pencil7"></i> Edit offer</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                          <a [routerLink]="" (click)="deleteOffer(offer.id)">
+                            <i class="icon-bin"></i> Move to trash</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /checkbox selection -->
+
+      </div>
+    </div>
+    <!-- /dashboard content -->
+
+  </div>
+  <!-- /content area -->
+
+</div>
